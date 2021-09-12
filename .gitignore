@@ -1,1 +1,2 @@
-do_not_commit.py
+do_not_commit*
+*.pyc
