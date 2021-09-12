@@ -49,6 +49,12 @@ class ModelInput:
         """Generate dictionary with seat utilities."""
         return dict(zip(seats["Seat"], seats["utility"]))
 
+    def build_seat_to_coordinates(
+        self, seats: pd.DataFrame
+    ) -> T.Dict[str, T.Tuple[int, int]]:
+        """Generate dictionary linking seats to their coordinates"""
+        return dict(zip(seats["Seat"], zip(seats["x_coor"], seats["y_coor"])))
+
     def build_complete_input(self):
         """Build complete input for model."""
         self.persons = self.build_persons(self.persons_input)
@@ -57,3 +63,4 @@ class ModelInput:
         self.person_team_dict = self.build_person_team_dict(self.persons_input)
         self.seat_distance_dict = self.build_seat_distance_dict(self.seats_input)
         self.seat_utility_dict = self.build_seat_utility_dict(self.seats_input)
+        self.seat_to_coordinates = self.build_seat_to_coordinates(self.seats_input)
